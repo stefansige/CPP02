@@ -158,6 +158,6 @@ Fixed& Fixed::max(Fixed& a, Fixed& b)
 
 const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
 {
-	return a.fixedPointValue > b.fixedPointValue ? a : b;
+	return a > b ? a : b;
 }
 
