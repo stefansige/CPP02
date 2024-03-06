@@ -97,22 +97,34 @@ bool Fixed::operator!=(const Fixed& other) const
 
 Fixed Fixed::operator+(const Fixed& other) const
 {
-	return Fixed(this->toFloat() + other.toFloat());
+	Fixed result;
+
+	result.fixedPointValue = this->fixedPointValue + other.fixedPointValue;
+	return result;
 }
 
 Fixed Fixed::operator-(const Fixed& other) const
 {
-	return Fixed(this->toFloat() - other.toFloat());
+	Fixed result;
+
+	result.fixedPointValue = this->fixedPointValue - other.fixedPointValue;
+	return result;
 }
 
 Fixed Fixed::operator*(const Fixed& other) const
 {
-	return Fixed(this->toFloat() * other.toFloat());
+	Fixed result;
+
+	result.fixedPointValue = (this->fixedPointValue * other.fixedPointValue) >> fractionalBits;
+	return result;
 }
 
 Fixed Fixed::operator/(const Fixed& other) const
 {
-	return Fixed(this->toFloat() / other.toFloat());
+	Fixed result;
+
+	result.fixedPointValue = (this->fixedPointValue << fractionalBits) / other.fixedPointValue;
+	return result;
 }
 
 Fixed& Fixed::operator++(void)
